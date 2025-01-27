@@ -6,7 +6,7 @@
     "dev": "concurrently -k -c auto -n web,api,gen  \"npm run dev:web\" \"npm run dev:api\" \"npm run dev:codegen\"",
     "dev:web": "next dev --turbopack web",
     "dev:api": "dotnet watch run --project Api/Api.csproj",
-    "dev:codegen": "orval --watch",
+    "dev:codegen": "APP_URL=http://localhost:3000 orval --watch",
     "build": "next build web",
     "start": "next start web",
     "lint": "next lint web",
