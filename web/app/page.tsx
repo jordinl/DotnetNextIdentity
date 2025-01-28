@@ -1,7 +1,14 @@
 import { getWeatherForecast } from "@/lib/gen/api";
+import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 
 async function Home() {
-  const response = await getWeatherForecast();
+  const response = await getWeatherForecast({ headers: await headers() });
+
+  if (response.status > 300) {
+    redirect("/login");
+  }
+
   const forecasts = response.data;
 
   return (
