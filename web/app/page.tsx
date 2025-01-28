@@ -1,23 +1,33 @@
-import { getWeatherForecast } from "@/lib/gen/api";
+import { getManageInfo, getWeatherForecast, InfoResponse } from "@/lib/gen/api";
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import Navbar from "./navbar";
+import EmailWarningAlert from "@/app/components/EmailWarning";
 
 async function Home() {
-  const response = await getWeatherForecast({ headers: await headers() });
+  const reqOptions = { headers: await headers() };
+  const [infoResp, forecastResp] = await Promise.all([
+    getManageInfo(reqOptions),
+    getWeatherForecast(reqOptions),
+  ]);
 
-  if (response.status > 300) {
+  if (forecastResp.status > 300) {
     redirect("/login");
   }
 
-  const forecasts = response.data;
+  const forecasts = forecastResp.data;
+  const userInfo = infoResp.data as InfoResponse;
+
+  console.log(userInfo);
 
   return (
     <>
-      <Navbar userEmail="joe@example.com" />
+      <Navbar userEmail={userInfo.email} />
 
-      <div className="max-w-4xl mx-auto p-6 mt-5">
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="max-w-4xl mx-auto p-6">
+        {!userInfo.isEmailConfirmed && <EmailWarningAlert />}
+
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mt-6">
           {forecasts.map((forecast, index) => (
             <div
               key={index}
