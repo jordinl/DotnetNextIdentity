@@ -7,7 +7,7 @@ export default function EmailWarningAlert({}) {
       <div className="flex-1 text-sm font-medium">
         Your email is not confirmed. Please{" "}
         <a
-          href="https://mail.google.com"
+          href="http://localhost:5000"
           target="_blank"
           rel="noopener noreferrer"
           className="font-semibold underline hover:text-yellow-900"

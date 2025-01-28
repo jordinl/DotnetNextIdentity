@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently -k -c auto -n web,api,gen  \"npm run dev:web\" \"npm run dev:api\" \"npm run dev:codegen\"",
+    "dev": "concurrently -k -c auto -n web,api,gen,mail \"npm run dev:web\" \"npm run dev:api\" \"npm run dev:codegen\" \"npm run maildev\"",
     "dev:web": "next dev --turbopack web",
     "dev:api": "dotnet watch run --project Api/Api.csproj",
     "dev:codegen": "APP_URL=http://localhost:3000 orval --watch",
     "build": "next build web",
+    "maildev": "maildev --smtp 1025 --web 5000",
     "start": "next start web",
     "lint": "next lint web",
     "prepare": "husky"
@@ -29,6 +30,7 @@
     "eslint-config-prettier": "^10.0.1",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
+    "maildev": "^2.2.1",
     "orval": "^7.4.1",
     "postcss": "^8",
     "prettier": "^3.4.2",
