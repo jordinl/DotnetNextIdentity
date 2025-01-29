@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import { getManageInfo, InfoResponse } from "@/lib/gen/api";
-import Navbar from "@/app/navbar";
+import Navbar from "@/app/components/Navbar";
 import EmailWarningAlert from "@/app/components/EmailWarning";
 
 export default async function PrivateLayout({
