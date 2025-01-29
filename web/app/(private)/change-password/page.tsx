@@ -47,7 +47,7 @@ export default function ChangePasswordPage() {
 
   return (
     <div className="bg-white rounded-lg shadow-lg mt-6 max-w-md mx-auto">
-      <div className="p-8 mt-10">
+      <div className="p-8">
         <h2 className="text-2xl font-semibold text-gray-900">
           Change your password
         </h2>

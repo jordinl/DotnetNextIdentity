@@ -22,7 +22,7 @@ export default function EmailWarningAlert({
 
   return (
     <div
-      className="flex items-center p-4 mb-4 text-yellow-800 bg-yellow-50 rounded-lg"
+      className="flex items-center p-4 mb-4 text-yellow-800 bg-yellow-50 border border-yellow-100 rounded-lg shadow"
       role="alert"
     >
       <div className="flex-1 text-sm font-medium">
