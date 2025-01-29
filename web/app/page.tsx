@@ -18,14 +18,14 @@ async function Home() {
   const forecasts = forecastResp.data;
   const userInfo = infoResp.data as InfoResponse;
 
-  console.log(userInfo);
-
   return (
     <>
       <Navbar userEmail={userInfo.email} />
 
       <div className="max-w-4xl mx-auto p-6">
-        {!userInfo.isEmailConfirmed && <EmailWarningAlert />}
+        {!userInfo.isEmailConfirmed && (
+          <EmailWarningAlert userEmail={userInfo.email} />
+        )}
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mt-6">
           {forecasts.map((forecast, index) => (

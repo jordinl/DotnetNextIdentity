@@ -53,6 +53,16 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapIdentityApi<IdentityUser>();
+app.MapIdentityApi<IdentityUser>()
+    .AddEndpointFilter(async (context, next) =>
+    {
+        if (context.HttpContext.Request.Path.StartsWithSegments("/resendConfirmationEmail") &&
+            context.HttpContext.User.Identity?.IsAuthenticated != true)
+        {
+            return Results.Unauthorized();
+        }
+
+        return await next(context);
+    });
 
 app.Run();
