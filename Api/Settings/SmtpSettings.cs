@@ -10,4 +10,5 @@ public class SmtpSettings
     public string Password { get; set; } = string.Empty;
     public bool UseSsl { get; set; }
     public string From { get; set; } = string.Empty;
+    public string BaseUrl { get; set; } = string.Empty;
 }

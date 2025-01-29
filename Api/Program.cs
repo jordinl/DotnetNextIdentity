@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 using Api.Data;
+using Api.Services;
 using Api.Settings;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -25,6 +26,7 @@ builder.Services.AddOpenApi();
 
 builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
 builder.Services.AddTransient<IEmailSender, EmailSender>();
+builder.Services.AddTransient<IEmailSender<IdentityUser>, IdentityEmailSender<IdentityUser>>();
 
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
