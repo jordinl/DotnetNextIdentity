@@ -42,8 +42,8 @@ export default function ChangeEmailPage() {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg mt-6">
-      <div className="p-8 mt-10">
+    <div className="bg-white rounded-lg shadow-lg mt-6 max-w-md mx-auto">
+      <div className="p-8">
         <h2 className="text-2xl font-semibold text-gray-900">
           Change your email
         </h2>
@@ -60,45 +60,29 @@ export default function ChangeEmailPage() {
           )}
 
           <div className="space-y-4">
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
-              >
-                New email address
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
-                placeholder="Enter your new email"
-              />
-            </div>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+              placeholder="New email address"
+            />
 
-            <div>
-              <label
-                htmlFor="confirm-email"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Confirm new email address
-              </label>
-              <input
-                id="confirm-email"
-                name="confirm-email"
-                type="email"
-                autoComplete="email"
-                required
-                value={confirmEmail}
-                onChange={(e) => setConfirmEmail(e.target.value)}
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
-                placeholder="Confirm your new email"
-              />
-            </div>
+            <input
+              id="confirm-email"
+              name="confirm-email"
+              type="email"
+              autoComplete="email"
+              required
+              value={confirmEmail}
+              onChange={(e) => setConfirmEmail(e.target.value)}
+              className="block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+              placeholder="Confirm new email address"
+            />
           </div>
 
           <div>
