@@ -3,6 +3,8 @@ using Api.Settings;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Options;
 
+namespace Api.Services;
+
 public class EmailSender(IOptions<EmailSettings> settings) : IEmailSender
 {
     private readonly EmailSettings _settings = settings.Value;
