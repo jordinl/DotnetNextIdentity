@@ -4,7 +4,7 @@ import { postRegister, type RegisterRequest } from "@/lib/gen/api";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -30,23 +30,20 @@ export default function RegisterPage() {
 
     const response = await postRegister(registerRequest);
     setIsLoading(false);
-    console.log(response.data);
 
     if (response.status === 200) {
       router.replace("/login");
     } else {
-      const title =
-        response.data?.title || "Registration failed. Please try again.";
-      const errors = Object.values(response.data?.errors || {}).flatMap(
-        (e) => e,
-      );
+      const data = response.data || {};
+      const title = data.title || "Registration failed. Please try again.";
+      const validationErrors = Object.values(data.errors || {});
+      const errors = [title, ...validationErrors].flatMap((e) => e);
       errors.forEach((error) => toast.error(error));
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <ToastContainer />
       <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow-lg">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
