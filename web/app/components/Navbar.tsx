@@ -65,6 +65,13 @@ const Navbar = ({ userEmail = "user@example.com" }) => {
                   </Link>
 
                   <Link
+                    href="/change-password"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    Change Password
+                  </Link>
+
+                  <Link
                     onClick={logout}
                     href="#"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"

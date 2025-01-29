@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { toast } from "react-toastify";
+import { setErrors } from "@/lib/utils";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -34,11 +35,7 @@ export default function RegisterPage() {
     if (response.status === 200) {
       router.replace("/login");
     } else {
-      const data = response.data || {};
-      const title = data.title || "Registration failed. Please try again.";
-      const validationErrors = Object.values(data.errors || {});
-      const errors = [title, ...validationErrors].flatMap((e) => e);
-      errors.forEach((error) => toast.error(error));
+      setErrors(response.data);
     }
   };
 
