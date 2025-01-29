@@ -3,9 +3,9 @@ using Api.Settings;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Options;
 
-public class EmailSender(IOptions<SmtpSettings> settings) : IEmailSender
+public class EmailSender(IOptions<EmailSettings> settings) : IEmailSender
 {
-    private readonly SmtpSettings _settings = settings.Value;
+    private readonly EmailSettings _settings = settings.Value;
 
     public async Task SendEmailAsync(string email, string subject, string message)
     {

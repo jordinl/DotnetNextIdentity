@@ -5,10 +5,10 @@ using Microsoft.Extensions.Options;
 
 namespace Api.Services;
 
-public class IdentityEmailSender<TUser>(IEmailSender emailSender, IOptions<SmtpSettings> settings) : IEmailSender<TUser>
+public class IdentityEmailSender<TUser>(IEmailSender emailSender, IOptions<EmailSettings> settings) : IEmailSender<TUser>
     where TUser : class
 {
-    private readonly SmtpSettings _settings = settings.Value;
+    private readonly EmailSettings _settings = settings.Value;
 
     public async Task SendConfirmationLinkAsync(TUser user, string email, string confirmationLink)
     {

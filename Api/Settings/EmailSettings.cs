@@ -1,8 +1,6 @@
-using Microsoft.AspNetCore.Mvc;
-
 namespace Api.Settings;
 
-public class SmtpSettings
+public class EmailSettings
 {
     public string Server { get; set; } = string.Empty;
     public int Port { get; set; }
