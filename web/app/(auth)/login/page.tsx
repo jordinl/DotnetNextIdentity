@@ -4,6 +4,8 @@ import { postLogin, type LoginRequest } from "@/lib/gen/api";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import GoogleButton from "@/app/components/GoogleButton";
+import FormDivider from "@/app/components/FormDivider";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -40,7 +42,11 @@ export default function LoginPage() {
             Sign in to your account
           </h2>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+
+        <GoogleButton />
+        <FormDivider />
+
+        <form className="space-y-6" onSubmit={handleSubmit}>
           {error && (
             <div className="text-red-500 text-sm text-center">{error}</div>
           )}

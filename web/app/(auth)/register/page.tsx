@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { toast } from "react-toastify";
 import { setErrors } from "@/lib/utils";
+import GoogleButton from "@/app/components/GoogleButton";
+import FormDivider from "@/app/components/FormDivider";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -47,6 +49,10 @@ export default function RegisterPage() {
             Create your account
           </h2>
         </div>
+
+        <GoogleButton />
+        <FormDivider />
+
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm space-y-4">
             <div>
