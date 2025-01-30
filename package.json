@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "dotenv -- concurrently -k -c auto -n web,api,gen,mail \"npm run dev:web\" \"npm run dev:api\" \"npm run dev:codegen\" \"npm run maildev\"",
+    "dev": "dotenv -- concurrently -k -c auto -n web,api,mail \"npm run dev:web\" \"npm run dev:api\" \"npm run maildev\"",
     "dev:web": "next dev --turbopack web",
     "dev:api": "dotnet watch run --project Api/Api.csproj",
-    "dev:codegen": "dotenv -- orval --watch",
+    "codegen": "dotnet build Api && dotenv -- orval",
     "build": "next build web",
     "maildev": "maildev --smtp 1025 --web 5000",
     "start": "next start web",
