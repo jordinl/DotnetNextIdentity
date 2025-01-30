@@ -13,7 +13,7 @@ public class IdentityEmailSender<TUser>(IEmailSender emailSender, IOptions<Email
     public async Task SendConfirmationLinkAsync(TUser user, string email, string confirmationLink)
     {
         var query = new Uri(confirmationLink).Query;
-        var confirmationUrl = $"{_settings.BaseUrl}/confirmEmail{query}";
+        var confirmationUrl = $"{_settings.BaseUrl}/confirm-email{query}";
 
         await emailSender.SendEmailAsync(
             email,
