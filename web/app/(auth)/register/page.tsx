@@ -1,6 +1,6 @@
 "use client";
 
-import { postRegister, type RegisterRequest } from "@/lib/gen/api";
+import { postRegister, type RegisterRequest } from "@/lib/gen";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -26,18 +26,18 @@ export default function RegisterPage() {
 
     setIsLoading(true);
 
-    const registerRequest: RegisterRequest = {
+    const body: RegisterRequest = {
       email,
       password,
     };
 
-    const response = await postRegister(registerRequest);
+    const { response, error } = await postRegister({ body });
     setIsLoading(false);
 
     if (response.status === 200) {
       router.replace("/login");
     } else {
-      setErrors(response.data);
+      setErrors(error);
     }
   };
 

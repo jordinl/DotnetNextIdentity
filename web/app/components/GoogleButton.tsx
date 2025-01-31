@@ -1,8 +1,11 @@
-import { getPostOAuthGoogleCallbackUrl } from "@/lib/gen/api";
 import { useEffect } from "react";
+import { PostOAuthGoogleCallbackData } from "@/lib/gen";
 
 export default function GoogleButton() {
   const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+  const path =
+    "/OAuth/GoogleCallback" satisfies PostOAuthGoogleCallbackData["url"];
+  const callbackUrl = `${process.env.NEXT_PUBLIC_APP_URL}/api${path}`;
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -23,7 +26,7 @@ export default function GoogleButton() {
         <div
           id="g_id_onload"
           data-client_id={clientId}
-          data-login_uri={getPostOAuthGoogleCallbackUrl()}
+          data-login_uri={callbackUrl}
           data-auto_prompt="false"
         ></div>
         <div

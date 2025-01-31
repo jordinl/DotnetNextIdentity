@@ -4,7 +4,7 @@ import {
   postManageInfo,
   InfoRequest,
   HttpValidationProblemDetails,
-} from "@/lib/gen/api";
+} from "@/lib/gen";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
@@ -29,19 +29,19 @@ export default function ChangePasswordPage() {
       return;
     }
 
-    const updateRequest: InfoRequest = {
+    const body: InfoRequest = {
       oldPassword,
       newPassword,
     };
 
-    const response = await postManageInfo(updateRequest);
+    const { response, error } = await postManageInfo({ body });
     setIsLoading(false);
 
     if (response.status === 200) {
       toast("Password updated successfully", { type: "success" });
       router.replace("/");
     } else {
-      setErrors(response.data as HttpValidationProblemDetails);
+      setErrors(error as HttpValidationProblemDetails);
     }
   };
 

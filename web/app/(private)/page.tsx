@@ -1,10 +1,13 @@
-import { getWeatherForecast } from "@/lib/gen/api";
+import { getWeatherForecast } from "@/lib/gen";
 import { headers } from "next/headers";
 
 async function Home() {
   const reqOptions = { headers: await headers() };
-  const response = await getWeatherForecast(reqOptions);
-  const forecasts = response.data;
+  const { data: forecasts } = await getWeatherForecast(reqOptions);
+
+  if (!forecasts) {
+    return <></>;
+  }
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mt-6">

@@ -1,6 +1,6 @@
 "use client";
 
-import { postResetPassword, type ResetPasswordRequest } from "@/lib/gen/api";
+import { postResetPassword, type ResetPasswordRequest } from "@/lib/gen";
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
@@ -40,20 +40,20 @@ export default function ResetPasswordPage() {
 
     setIsLoading(true);
 
-    const resetRequest: ResetPasswordRequest = {
+    const body: ResetPasswordRequest = {
       email,
       resetCode: code,
       newPassword: password,
     };
 
-    const response = await postResetPassword(resetRequest);
+    const { response, error } = await postResetPassword({ body });
     setIsLoading(false);
 
     if (response.status === 200) {
       toast("Successfully updated password!", { type: "success" });
       router.replace("/login");
     } else {
-      setErrors(response.data);
+      setErrors(error);
     }
   };
 

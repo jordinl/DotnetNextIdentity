@@ -1,6 +1,6 @@
 "use client";
 
-import { postManageInfo, InfoRequest } from "@/lib/gen/api";
+import { postManageInfo, InfoRequest } from "@/lib/gen";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
@@ -23,11 +23,11 @@ export default function ChangeEmailPage() {
       return;
     }
 
-    const updateRequest: InfoRequest = {
+    const body: InfoRequest = {
       newEmail: email,
     };
 
-    const response = await postManageInfo(updateRequest);
+    const { response } = await postManageInfo({ body });
     setIsLoading(false);
 
     if (response.status === 200) {

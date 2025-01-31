@@ -2,9 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { postForgotPassword } from "@/lib/gen/api";
+import { postForgotPassword } from "@/lib/gen";
 import { toast } from "react-toastify";
-import { setErrors } from "@/lib/utils";
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
@@ -14,7 +13,8 @@ export default function ForgotPasswordPage() {
     e.preventDefault();
     setIsLoading(true);
 
-    const response = await postForgotPassword({ email });
+    const body = { email };
+    const { response } = await postForgotPassword({ body });
     setIsLoading(false);
     setEmail("");
 

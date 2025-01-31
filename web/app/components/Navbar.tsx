@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { postLogout } from "@/lib/gen/api";
+import { postLogout } from "@/lib/gen";
 import { useRouter } from "next/navigation";
 
 const Navbar = ({ userEmail = "user@example.com" }) => {

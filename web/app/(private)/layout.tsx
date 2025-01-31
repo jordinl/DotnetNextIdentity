@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
-import { getManageInfo, InfoResponse } from "@/lib/gen/api";
+import { getManageInfo } from "@/lib/gen";
 import Navbar from "@/app/components/Navbar";
 import EmailWarningAlert from "@/app/components/EmailWarning";
 
@@ -9,14 +9,13 @@ export default async function PrivateLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const reqOptions = { headers: await headers() };
-  const response = await getManageInfo(reqOptions);
+  const { response, data: userInfo } = await getManageInfo({
+    headers: await headers(),
+  });
 
-  if (response.status > 300) {
+  if (response.status !== 200 || userInfo === undefined) {
     redirect("/login");
   }
-
-  const userInfo = response.data as InfoResponse;
 
   return (
     <>

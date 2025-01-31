@@ -1,6 +1,6 @@
 "use client";
 
-import { postResendConfirmationEmail } from "@/lib/gen/api";
+import { postResendConfirmationEmail } from "@/lib/gen";
 import { toast } from "react-toastify";
 
 export default function EmailWarningAlert({
@@ -11,7 +11,9 @@ export default function EmailWarningAlert({
   const resendEmailConfirmation = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const response = await postResendConfirmationEmail({ email: userEmail });
+    const { response } = await postResendConfirmationEmail({
+      body: { email: userEmail },
+    });
     const success = response.status === 200;
     const message = success
       ? "Successfully resent email"

@@ -1,14 +1,13 @@
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
-import { getManageInfo } from "@/lib/gen/api";
+import { getManageInfo } from "@/lib/gen";
 
 export default async function AuthLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const reqOptions = { headers: await headers() };
-  const response = await getManageInfo(reqOptions);
+  const { response } = await getManageInfo({ headers: await headers() });
 
   if (response.status === 200) {
     redirect("/");

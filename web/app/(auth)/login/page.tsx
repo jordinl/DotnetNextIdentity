@@ -1,6 +1,6 @@
 "use client";
 
-import { postLogin, type LoginRequest } from "@/lib/gen/api";
+import { postLogin, type LoginRequest } from "@/lib/gen";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -19,12 +19,12 @@ export default function LoginPage() {
     setIsLoading(true);
     setError("");
 
-    const loginRequest: LoginRequest = {
+    const body: LoginRequest = {
       email,
       password,
     };
 
-    const response = await postLogin(loginRequest, { useCookies: true });
+    const { response } = await postLogin({ body, query: { useCookies: true } });
 
     if (response.status === 200) {
       router.replace("/");

@@ -1,12 +1,5 @@
 import { toast } from "react-toastify";
-import { HttpValidationProblemDetails } from "@/lib/gen/api";
-
-interface ErrorResponse {
-  title?: string;
-  errors?: {
-    [key: string]: string[];
-  };
-}
+import { HttpValidationProblemDetails } from "@/lib/gen";
 
 export const setErrors = (data: HttpValidationProblemDetails | void) => {
   const title =

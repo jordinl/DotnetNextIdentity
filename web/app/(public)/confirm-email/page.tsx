@@ -1,17 +1,16 @@
 import {
   mapIdentityApiConfirmEmail,
-  MapIdentityApiConfirmEmailParams,
-} from "@/lib/gen/api";
+  MapIdentityApiConfirmEmailData,
+} from "@/lib/gen";
 import EmailConfirmationResult from "@/app/components/EmailConfirmationResult";
 
 export default async function ConfirmEmail({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<MapIdentityApiConfirmEmailData["query"]>;
 }) {
-  const resp = await mapIdentityApiConfirmEmail(
-    searchParams as MapIdentityApiConfirmEmailParams,
-  );
+  const query = await searchParams;
+  const { response } = await mapIdentityApiConfirmEmail({ query });
 
-  return <EmailConfirmationResult success={resp.status === 200} />;
+  return <EmailConfirmationResult success={response.status === 200} />;
 }
